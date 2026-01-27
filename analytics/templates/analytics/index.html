@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<h1>
+  Общий баланс {{ total_balance }}
+</h1>
+
+<h1>Мои счета</h1>
+
+<ul>
+  {% for acc in accounts %}
+    <li>{{ acc.name_acc }} — {{ acc.cash }}</li>
+  {% empty %}
+    <li>Счетов пока нет</li>
+  {% endfor %}
+</ul>
+
+<h1>Траты за период</h1>
+
+<form method="get">
+  {{ form.start.label_tag }} {{ form.start }}
+  {{ form.end.label_tag }} {{ form.end }}
+  <button type="submit">Показать</button>
+</form>
+
+<p>Итого потрачено: <strong>{{ expenses }}</strong></p>
+<p>Итого получено: <strong>{{ income }}</strong></p>
+
+<h2>Последние транзакции</h2>
+
+<ul>
+  {% for tran in last_transactions %}
+    <li>{{ tran.how_much }} — {{ tran.where }} — {{ tran.time }} — {{ tran.category }} — {{ tran.acc }}</li>
+  {% empty %}
+    <li>Транзакций пока нет</li>
+  {% endfor %}
+</ul>
+{% endblock %}
