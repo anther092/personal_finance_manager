@@ -2,10 +2,20 @@
 
 {% block content%}
 <h1>
-  привет
+  привет, это транзакции
 </h1>
 
-<h1>
-  это транзакции
-</h1>
+<form method="post">
+  {% csrf_token %}
+  <input type="hidden" name="form_id" value="transactions">
+  {{ formAccManipulation.as_p }}
+  <button type="submit">Отправить</button>
+</form>
+
+<form method="post">
+  {% csrf_token %}
+  <input type="hidden" name="form_id" value="account">
+  {{ formAddNewAcc.as_p }}
+  <button type="submit">Отправить</button>
+</form>
 {% endblock %}
